@@ -2,24 +2,30 @@ import pygame as pyg
 from ui_elements.ui_element import Element
 
 class Button(Element):
-    def __init__(self, pos, width, height, text, command=lambda *args:print("Button pressed"), args=()):
+    def __init__(self, pos, width, height, text, font, # Basic
+                 command=lambda *args:print("Button pressed"), args=(), kwargs=(), #Command setup
+                 fg=(150, 150, 150), bg=(100, 100, 100), font_color="black", roundness=10, depth=10, push_depth=5): # Style
+
         super().__init__(pos, width, height, element_type="button")
+        # Command control
+        self.text = text
         self.command = command
         self.command_args = args
-        self.text = text
+        self.command_kwargs = kwargs
 
+        # Style
+        self.roundness = roundness
+        self.depth = depth
+        self.push_depth = push_depth
+        self.bg = bg
+        self.fg = fg
+        self.font_color = font_color
+        self.font = font
+
+        # State
         self.mouse_was_down = False
         self.is_active = False
         self.hover = False
-        
-        self.roundness = 10
-        self.depth = 10
-        self.push_depth = 5
-        self.bg = (100, 100, 100)
-        self.fg = (150, 150, 150)
-        self.active = 0
-
-        self.font = pyg.font.Font("Mono.ttf", 32)
 
     def display_visuals(self, screen):
 
