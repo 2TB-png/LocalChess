@@ -4,7 +4,7 @@ from os import getenv
 import pygame as pyg
 
 import ui_elements as ui
-import utils
+from ui_elements import utils
 import colors
 
 pyg.init()
